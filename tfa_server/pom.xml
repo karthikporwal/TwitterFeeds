@@ -3,33 +3,52 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<name>twitterfeeds</name>
 	<groupId>org.kp</groupId>
 	<artifactId>twitterfeeds</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>twitterfeeds</name>
-	<url>http://maven.apache.org</url>
 
 	<properties>
+		<start-class>org.kp.twitterfeeds.TwitterFeedsApplication</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputeEncoding>UTF-8</project.reporting.outputeEncoding>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.2.RELEASE</version>
+		<version>2.3.2.RELEASE</version>
 	</parent>
 
 	<dependencies>
 
-		<!-- Add typical dependencies for a web application -->
+		<!-- Add Spring dependencies for a web application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		
+		<!-- Commons dependency -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.twitter4j</groupId>
@@ -41,7 +60,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

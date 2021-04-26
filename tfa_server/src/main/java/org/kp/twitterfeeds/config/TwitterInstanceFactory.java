@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import twitter4j.Query;
-import twitter4j.QueryResult;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
@@ -40,24 +37,7 @@ public class TwitterInstanceFactory {
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			this.twitter = tf.getInstance();
 		}
-		try {
-			checkFeed();
-		} catch (TwitterException e) {
-			logger.error("Failed to fetch timeline", e);
-		}
 		return twitter;
-		
-	}
-
-	private void checkFeed() throws TwitterException {
-		Query query = new Query("COVID");
-	    QueryResult result = twitter.search(query);
-	    
-	    result.getTweets().stream().forEach(
-	    		(item -> 
-	      logger.info("Text: {}", item.getText())
-	      ));
-		
 		
 	}
 
