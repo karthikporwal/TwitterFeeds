@@ -5,7 +5,12 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -39,6 +44,15 @@ public class TwitterInstanceFactory {
 		}
 		return twitter;
 		
+	}
+	
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+	    ObjectMapper mapper = new ObjectMapper();
+	    mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+	    MappingJackson2HttpMessageConverter converter = 
+	        new MappingJackson2HttpMessageConverter(mapper);
+	    return converter;
 	}
 
 }
